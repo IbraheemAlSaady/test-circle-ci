@@ -28,7 +28,7 @@ jobs:
           image: test
           no_output_timeout: 20m
           registry-url: eu.gcr.io
-          target-tag: $CIRCLE_TAG
+          tag: $CIRCLE_TAG
       # - gcp-gcr/push-image:
       #     digest-path: /tmp/digest.txt
       #     image: orb-test
@@ -40,6 +40,8 @@ workflows:
   install_and_configure_cli:
     jobs:
       - gcp-cli:
+          context: orb-publisher
           filters: *filters
       - gcr-build:
+          context: orb-publisher
           filters: *filters
