@@ -24,6 +24,7 @@ jobs:
   gcr-build:
     executor: gcp-gcr/default
     steps:
+      - checkout
       - gcp-gcr/build-image:
           image: test
           no_output_timeout: 20m
