@@ -6,12 +6,12 @@ orbs:
   orb-tools: circleci/orb-tools@11.4
 
 jobs:
-  build-and-push:
+  gcp-cli:
     executor: gcp-gcr/default
     steps:
       - checkout
-      - gcp-cli/install
-      - 
+      - gcp-cli/setup:
+          version: 404.0.0
       # - gcp-gcr/build-image:
       #     image: orb-test
       #     no_output_timeout: 20m
@@ -20,10 +20,10 @@ jobs:
       #     digest-path: /tmp/digest.txt
       #     image: orb-test
       #     registry-url: eu.gcr.io
-      - run:
-          command: |
-            gcloud version
+      # - run:
+      #     command: |
+      #       gcloud version
 workflows:
-  commit:
+  install_and_configure_cli:
     jobs:
-      - build-and-push
+      - gcp-cli
