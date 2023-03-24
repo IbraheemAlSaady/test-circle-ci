@@ -7,7 +7,7 @@ orbs:
 
 filters: &filters
   tags:
-    only: /*.*.*/
+    only: /.*/
 
 jobs:
   gcp-cli:
