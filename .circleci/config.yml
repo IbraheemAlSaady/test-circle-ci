@@ -6,7 +6,6 @@ workflows:
     jobs:
       - gcp-gcr/build-and-push-image:
           context: gcp
-          executor: docker
           image: app
           registry-url: europe-west1-docker.pkg.dev
           # setup-remote-docker: true
