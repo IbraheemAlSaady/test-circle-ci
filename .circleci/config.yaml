@@ -1,0 +1,13 @@
+version: '2.1'
+orbs:
+  gcp-gcr: circleci/gcp-gcr@0.15.1
+workflows:
+  build_and_push_image:
+    jobs:
+      - gcp-gcr/build-and-push-image:
+          context: gcp
+          executor: docker
+          image: app
+          registry-url: europe-west1-docker.pkg.dev
+          # setup-remote-docker: true
+          # use-docker-layer-caching: true

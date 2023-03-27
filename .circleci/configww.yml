@@ -42,7 +42,7 @@ workflows:
     jobs:
       - gcp-cli:
           context: orb-publisher
-          filters: *filters
+          # filters: *filters
       - gcr-build:
           context: orb-publisher
-          filters: *filters
+          # filters: *filters

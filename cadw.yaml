@@ -1,0 +1,26 @@
+version: 2.1
+
+orbs:
+  gcp-gcr: circleci/gcp-gcr@0.15.1
+  orb-tools: circleci/orb-tools@11.4
+
+filters: &filters
+  tags:
+    only: /.*/
+
+jobs:
+  gcr-build-push:
+    executor: gcp-gcr/default
+    steps:
+      - checkout
+      - gcp-gcr/build-and-push-image:
+          image: webapp/
+          no_output_timeout: 20m
+          registry-url: us.gcr.io
+          tag: $CIRCLE_TAG
+workflows:
+  gcr-container-build-push:
+    jobs:
+      - gcr-build-push:
+          context: orb-publisher
+          filters: *filters
