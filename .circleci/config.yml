@@ -24,7 +24,7 @@ jobs:
           tag: $CIRCLE_TAG
 
 workflows:
-  gcr-build-push:
+  gcr-container:
     jobs:
       - gcr-build-push:
           context: orb-publisher
