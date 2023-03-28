@@ -1,31 +1,21 @@
-version: 2.1
-
+version: '2.1'
 orbs:
   gcp-gcr: circleci/gcp-gcr@0.15.1
-  orb-tools: circleci/orb-tools@11.4
 
 filters: &filters
   tags:
     only: /.*/
-
-jobs:
-  gcr-build-push:
-    executor: gcp-gcr/default
-    steps:
-      - checkout
-      - gcp-gcr/build-image:
-          image: app/webapp
-          no_output_timeout: 20m
-          registry-url: europe-west1-docker.pkg.dev
-          tag: $CIRCLE_TAG
-      - gcp-gcr/push-image:
-          image: app/webapp
-          registry-url: europe-west1-docker.pkg.dev
-          tag: $CIRCLE_TAG
+  branches:
+    ignore: /.*/
 
 workflows:
-  gcr-container:
+  build_and_push_image:
     jobs:
-      - gcr-build-push:
-          context: orb-publisher
+      - gcp-gcr/build-and-push-image:
+          context: gcp
+          image: app/webapp
+          registry-url: europe-west1-docker.pkg.dev
+          tag: $CIRCLE_TAG
           filters: *filters
+          # setup-remote-docker: true
+          # use-docker-layer-caching: true
