@@ -15,7 +15,7 @@ workflows:
           context: gcp
           image: app/webapp
           registry-url: europe-west1-docker.pkg.dev
-          tag: $CIRCLE_TAG
-          filters: *filters
+          tag: "2.5.9"
+          # filters: *filters
           # setup-remote-docker: true
           # use-docker-layer-caching: true
